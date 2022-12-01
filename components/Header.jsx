@@ -1,7 +1,8 @@
 import { useAddress, useDisconnect, ConnectWallet } from "@thirdweb-dev/react";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
-import styles from "../styles/Theme.module.css";
+import styles from "../styles/Header.module.css";
 
 export default function Header() {
   // Helpful thirdweb hooks to connect and manage the wallet from metamask.
@@ -11,15 +12,24 @@ export default function Header() {
   return (
     <div className={styles.header}>
       <div className={styles.left}>
-        <Link href="/" passHref>
+        <Link href="/home" passHref>
           <img
             src={`/logo.png`}
-            alt="Thirdweb Logo"
+            alt="Aura Logo"
             className={styles.headerLogo}
           />
         </Link>
         <Link href="/listings">
-          <a className={styles.headerItem}>Listings</a>
+          <a className={styles.headerItem}>Buy</a>
+        </Link>
+        <Link href="/create">
+          <a className={styles.headerItem}>List</a>
+        </Link>
+        <Link href="/">
+          <a className={styles.headerItem}>Create</a>
+        </Link>
+        <Link href="/staking">
+          <a className={styles.headerItem}>Earn</a>
         </Link>
       </div>
 
