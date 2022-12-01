@@ -26,6 +26,22 @@ body {
   text-align: center;
 }
 
+.aws-btn {
+  --slider-height-percentage: 60%;
+  --slider-transition-duration: 770ms;
+  --organic-arrow-thickness: 4px;
+  --organic-arrow-border-radius: 0px;
+  --organic-arrow-height: 40px;
+  --organic-arrow-color: #50b6d9;
+  --control-button-width: 5%;
+  --control-button-height: 25%;
+  --control-button-background: transparent;
+  --control-bullet-color: transparent;
+  --control-bullet-active-color: transparent;
+  --loader-bar-color: #851515;
+  --loader-bar-height: 6px;
+  }
+
 /* Box sizing rules */
 *,
 *::before,
