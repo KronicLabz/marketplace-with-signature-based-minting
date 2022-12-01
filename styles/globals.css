@@ -1,24 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans:wght@800&family=PT+Sans:wght@700&display=swap");
 
 /* Change the values in here to match your branding */
 :root {
-  /* Background color of the page */
-  --background-color: #1c1e21;
-
-  /* Color of the text/words */
-  --text-color: #fff;
-
-  /* Main color of your brand */
-  --color-primary: #f213a4;
-
-  /* Secondary color of your brand */
-  --color-secondary: #418dff;
-
-  /* Which font you want to use */
-  --font: "Inter", sans-serif;
-
-  /* Color of the border around items */
-  --border-color: rgba(255, 255, 255, 0.5);
+  --black: #000000;
+  --background-image: url("https://kroniclabz.mypinata.cloud/ipfs/QmP3RNjcMYaU9QNNFeQHPQXBdsBkrdPgNXDp7G3edgxur7");
+  --white: #ffffff;
+  --tw-color1: #a855f7;
+  --tw-color1-hover: #9333ea;
+  --font-family: 'Noto Sans', sans-serif;
+  --text-color: white;
 }
 
 /* --- Don't need to modify below here --- */
@@ -27,7 +17,8 @@
 
 body {
   background: var(--background-color);
-  font-family: var(--font);
+  background-image: var(--background-image);
+  font-family: var(--font-family);
   color: var(--text-color);
 
   display: flex;
