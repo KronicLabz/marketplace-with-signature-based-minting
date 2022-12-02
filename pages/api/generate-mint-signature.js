@@ -1,9 +1,10 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 export default async function generateMintSignature(req, res) {
   // De-construct body from request
   let { address, name, description, image } = JSON.parse(req.body);
-  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "goerli");
+  const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "mainnet");
 
   const nftContract = await sdk.getContract(
     "0x5e0d08BF82f40b80DF1beb1874D04C1416BCc8B2",
@@ -15,6 +16,7 @@ export default async function generateMintSignature(req, res) {
       name: name,
       description: description,
       image: image,
+      collection: collection,
     },
     to: address,
     mintStartTime: new Date(0),
