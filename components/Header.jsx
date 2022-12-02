@@ -12,7 +12,7 @@ export default function Header() {
   return (
     <div className={styles.header}>
       <div className={styles.left}>
-        <Link href="/home" passHref>
+        <Link href="/" passHref>
           <img
             src={`/logo.png`}
             alt="Aura Logo"
@@ -22,10 +22,10 @@ export default function Header() {
         <Link href="/listings">
           <a className={styles.headerItem}>Buy</a>
         </Link>
-        <Link href="/create">
+        <Link href="/sell">
           <a className={styles.headerItem}>List</a>
         </Link>
-        <Link href="/">
+        <Link href="/create">
           <a className={styles.headerItem}>Create</a>
         </Link>
         <Link href="/staking">
