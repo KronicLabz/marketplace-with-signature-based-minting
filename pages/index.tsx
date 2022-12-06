@@ -76,6 +76,34 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+      <p></p>
+      <div className={styles.Education}>
+        <h1>Verified Partners</h1>
+        <div className={styles.verifiedPartners}>
+          <div
+            className={styles.verifiedOptionSelectBox}
+            role="button"
+            onClick={() => router.push(`/mint`)}
+          >
+            <Link href="https://first-class-eta.vercel.app/" passHref>
+              <img src={`/images/firstclass.png`} className={styles.image} />
+            </Link>
+            <h4>
+              A platform for content creators to safely maintain and tokengate
+              their communities.
+            </h4>
+          </div>
+          <div className={styles.verifiedOptionSelectBox}>
+            <Link href="https://thirdweb.com/" passHref>
+              <img src={`/images/thirdweb.png`} className={styles.image} />
+            </Link>
+            <h4>
+              Everything you need to connect your apps or games to decentralized
+              networks. Powerful tools that simplify web3 development.
+            </h4>
+          </div>
+        </div>
+      </div>
       <div className={styles.notableCollections}>
         <div className={styles.container}>
           <h1 className={styles.h1}>Featured Collections</h1>
@@ -87,9 +115,6 @@ const Home: NextPage = () => {
             height={300}
           />
         </div>
-      </div>
-      <div className={styles.education}>
-        <h1>Web3 101</h1>
       </div>
     </div>
   );
