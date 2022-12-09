@@ -1,184 +1,205 @@
 import {
-    useClaimedNFTSupply,
-    useContractMetadata,
-    useUnclaimedNFTSupply,
-    useActiveClaimCondition,
-    Web3Button,
-    useContract,
-  } from "@thirdweb-dev/react";
-  import { formatUnits, parseUnits } from "ethers/lib/utils";
-  import type { NextPage } from "next";
-  import { useState } from "react";
-  import styles from "../styles/Theme.module.css";
-  import React from "react";
-  
-  // Put Your NFT Drop Contract address from the dashboard here
-  const myNftDropContractAddress = "0xc875CE0c715EeBE8795037d6fE06a2802d6cEbE1";
-  
-  const Home: NextPage = () => {
-    const { contract: nftDrop } = useContract(myNftDropContractAddress);
-  
-    // The amount the user claims
-    const [quantity, setQuantity] = useState(1); // default to 1
-  
-    // Load contract metadata
-    const { data: contractMetadata } = useContractMetadata(nftDrop);
-  
-    // Load claimed supply and unclaimed supply
-    const { data: unclaimedSupply } = useUnclaimedNFTSupply(nftDrop);
-    const { data: claimedSupply } = useClaimedNFTSupply(nftDrop);
-  
-    // Load the active claim condition
-    const { data: activeClaimCondition } = useActiveClaimCondition(nftDrop);
-  
-    // Check if there's NFTs left on the active claim phase
-    const isNotReady =
-      activeClaimCondition &&
-      parseInt(activeClaimCondition?.availableSupply) === 0;
-  
-    // Check if there's any NFTs left
-    const isSoldOut = unclaimedSupply?.toNumber() === 0;
-  
-    // Check price
-    const price = parseUnits(
-      activeClaimCondition?.currencyMetadata.displayValue || "0",
-      activeClaimCondition?.currencyMetadata.decimals
-    );
-  
-    // Multiply depending on quantity
-    const priceToMint = price.mul(quantity);
-  
-    // Loading state while we fetch the metadata
-    if (!nftDrop || !contractMetadata) {
-      return <div className={styles.container}>Loading...</div>;
+  ThirdwebNftMedia,
+  useAddress,
+  useMetamask,
+  useTokenBalance,
+  useOwnedNFTs,
+  useContract,
+} from "@thirdweb-dev/react";
+import { BigNumber, ethers } from "ethers";
+import type { NextPage } from "next";
+import { useEffect, useState } from "react";
+import styles from "<div className="" />
+<styles />
+<StakingY></StakingY>.module.css";
+
+const nftDropContractAddress = "0x767DFb1e584b426916D78C19a27f179B7bA35c9B";
+const tokenContractAddress = "0x88cCC5cdE30a98804a5b8002Bff55367DDd5b30D";
+const stakingContractAddress = "0xaA5c665A9abcb780aF18627DB3cF835fFCA1dbe9";
+
+const Stake: NextPage = () => {
+  // Wallet Connection Hooks
+  const address = useAddress();
+  const connectWithMetamask = useMetamask();
+
+  // Contract Hooks
+  const { contract: nftDropContract } = useContract(
+    nftDropContractAddress,
+    "nft-drop"
+  );
+
+  const { contract: tokenContract } = useContract(
+    tokenContractAddress,
+    "token"
+  );
+
+  const { contract, isLoading } = useContract(stakingContractAddress);
+
+  // Load Unstaked NFTs
+  const { data: ownedNfts } = useOwnedNFTs(nftDropContract, address);
+
+  // Load Balance of Token
+  const { data: tokenBalance } = useTokenBalance(tokenContract, address);
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Custom contract functions
+  ///////////////////////////////////////////////////////////////////////////
+  const [stakedNfts, setStakedNfts] = useState<any[]>([]);
+  const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
+
+  useEffect(() => {
+    if (!contract) return;
+
+    async function loadStakedNfts() {
+      const stakedTokens = await contract?.call("getStakedTokens", address);
+
+      // For each staked token, fetch it from the sdk
+      const stakedNfts = await Promise.all(
+        stakedTokens?.map(
+          async (stakedToken: { staker: string; tokenId: BigNumber }) => {
+            const nft = await nftDropContract?.get(stakedToken.tokenId);
+            return nft;
+          }
+        )
+      );
+
+      setStakedNfts(stakedNfts);
+      console.log("setStakedNfts", stakedNfts);
     }
-  
-    return (
-      <div className={styles.container}>
-        <div className={styles.mintInfoContainer}>
-          <div className={styles.infoSide}>
-            {/* Title of your NFT Collection */}
-            <h1>{contractMetadata?.name}</h1>
-            {/* Description of your NFT Collection */}
-            <p className={styles.description}>{contractMetadata?.description}</p>
-          </div>
-  
-          <div className={styles.imageSide}>
-            {/* Image Preview of NFTs */}
-            <img
-              className={styles.image}
-              src={contractMetadata?.image}
-              alt={`${contractMetadata?.name} preview image`}
-            />
-  
-            {/* Amount claimed so far */}
-            <div className={styles.mintCompletionArea}>
-              <div className={styles.mintAreaLeft}>
-                <p>Total Minted</p>
-              </div>
-              <div className={styles.mintAreaRight}>
-                {claimedSupply && unclaimedSupply ? (
-                  <p>
-                    {/* Claimed supply so far */}
-                    <b>{claimedSupply?.toNumber()}</b>
-                    {" / "}
-                    {
-                      // Add unclaimed and claimed supply to get the total supply
-                      claimedSupply?.toNumber() + unclaimedSupply?.toNumber()
-                    }
-                  </p>
-                ) : (
-                  // Show loading state if we're still loading the supply
-                  <p>Loading...</p>
-                )}
-              </div>
-            </div>
-  
-            {/* Show claim button or connect wallet button */}
-            {
-              // Sold out or show the claim button
-              isSoldOut ? (
-                <div>
-                  <h2>Sold Out</h2>
-                </div>
-              ) : isNotReady ? (
-                <div>
-                  <h2>Not ready to be minted yet</h2>
-                </div>
-              ) : (
-                <>
-                  <p>Quantity</p>
-                  <div className={styles.quantityContainer}>
-                    <button
-                      className={`${styles.quantityControlButton}`}
-                      onClick={() => setQuantity(quantity - 1)}
-                      disabled={quantity <= 1}
-                    >
-                      -
-                    </button>
-  
-                    <h4>{quantity}</h4>
-  
-                    <button
-                      className={`${styles.quantityControlButton}`}
-                      onClick={() => setQuantity(quantity + 1)}
-                      /*disabled={
-                        quantity >=
-                        parseInt(
-                          activeClaimCondition?.quantityLimitPerTransaction || "10"
-                        )
-                      }*/
-                    >
-                      +
-                    </button>
-                  </div>
-  
-                  <div className={styles.mintContainer}>
-                    <Web3Button
-                      contractAddress={myNftDropContractAddress}
-                      action={async (contract) =>
-                        await contract.erc721.claim(quantity)
-                      }
-                      // If the function is successful, we can do something here.
-                      onSuccess={(result) =>
-                        alert(
-                          `Successfully minted ${result.length} NFT${
-                            result.length > 1 ? "s" : ""
-                          }!`
-                        )
-                      }
-                      // If the function fails, we can do something here.
-                      onError={(error) => alert(error?.message)}
-                      accentColor="#d7b834"
-                      colorMode="dark"
-                    >
-                      {`Mint${quantity > 1 ? ` ${quantity}` : ""}${
-                        activeClaimCondition?.price.eq(0)
-                          ? " (Free)"
-                          : activeClaimCondition?.currencyMetadata.displayValue
-                          ? ` (${formatUnits(
-                              priceToMint,
-                              activeClaimCondition.currencyMetadata.decimals
-                            )} ${activeClaimCondition?.currencyMetadata.symbol})`
-                          : ""
-                      }`}
-                    </Web3Button>
-                  </div>
-                </>
-              )
-            }
-          </div>
-        </div>
-        {/* Powered by thirdweb */}{" "}
-        <img
-          src="/logo.png"
-          alt="thirdweb Logo"
-          width={135}
-          className={styles.buttonGapTop}
-        />
-      </div>
+
+    if (address) {
+      loadStakedNfts();
+    }
+  }, [address, contract, nftDropContract]);
+
+  useEffect(() => {
+    if (!contract || !address) return;
+
+    async function loadClaimableRewards() {
+      const cr = await contract?.call("availableRewards", address);
+      console.log("Loaded claimable rewards", cr);
+      setClaimableRewards(cr);
+    }
+
+    loadClaimableRewards();
+  }, [address, contract]);
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Write Functions
+  ///////////////////////////////////////////////////////////////////////////
+  async function stakeNft(id: string) {
+    if (!address) return;
+
+    const isApproved = await nftDropContract?.isApproved(
+      address,
+      stakingContractAddress
     );
-  };
-  
-  export default Home;
-  
+    // If not approved, request approval
+    if (!isApproved) {
+      await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
+    }
+    const stake = await contract?.call("stake", id);
+  }
+
+  async function withdraw(id: BigNumber) {
+    const withdraw = await contract?.call("withdraw", id);
+  }
+
+  async function claimRewards() {
+    const claim = await contract?.call("claimRewards");
+  }
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.h1}>Stake Your NFTs</h1>
+
+      <hr className={`${styles.divider} ${styles.spacerTop}`} />
+
+      {!address ? (
+        <button className={styles.mainButton} onClick={connectWithMetamask}>
+          Connect Wallet
+        </button>
+      ) : (
+        <>
+          <h2>Your Tokens</h2>
+
+          <div className={styles.tokenGrid}>
+            <div className={styles.tokenItem}>
+              <h3 className={styles.tokenLabel}>Claimable Rewards</h3>
+              <p className={styles.tokenValue}>
+                <b>
+                  {!claimableRewards
+                    ? "Loading..."
+                    : ethers.utils.formatUnits(claimableRewards, 18)}
+                </b>{" "}
+                {tokenBalance?.symbol}
+              </p>
+            </div>
+            <div className={styles.tokenItem}>
+              <h3 className={styles.tokenLabel}>Current Balance</h3>
+              <p className={styles.tokenValue}>
+                <b>{tokenBalance?.displayValue}</b> {tokenBalance?.symbol}
+              </p>
+            </div>
+          </div>
+
+          <button
+            className={`${styles.mainButton} ${styles.spacerTop}`}
+            onClick={() => claimRewards()}
+          >
+            Claim Rewards
+          </button>
+
+          <hr className={`${styles.divider} ${styles.spacerTop}`} />
+
+          <h2>Your Staked NFTs</h2>
+          <div className={styles.nftBoxGrid}>
+            {stakedNfts?.map((nft) => (
+              <div className={styles.nftBox} key={nft.metadata.id.toString()}>
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
+                  className={styles.nftMedia}
+                />
+                <h3>{nft.metadata.name}</h3>
+                <button
+                  className={`${styles.mainButton} ${styles.spacerBottom}`}
+                  onClick={() => withdraw(nft.metadata.id)}
+                >
+                  Withdraw
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <hr className={`${styles.divider} ${styles.spacerTop}`} />
+
+          <h2>Your Unstaked NFTs</h2>
+
+          <div className={styles.nftBoxGrid}>
+            {ownedNfts?.map((nft) => (
+              <div className={styles.nftBox} key={nft.metadata.id.toString()}>
+                <ThirdwebNftMedia
+                  metadata={nft.metadata}
+                  className={styles.nftMedia}
+                />
+                <h3>{nft.metadata.name}</h3>
+                <button
+                  className={`${styles.mainButton} ${styles.spacerBottom}`}
+                  onClick={() => stakeNft(nft.metadata.id)}
+                >
+                  Stake
+                </button>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Stake;

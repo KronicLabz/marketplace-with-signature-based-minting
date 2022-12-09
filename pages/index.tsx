@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Theme.module.css";
@@ -6,6 +7,8 @@ import "@madzadev/image-slider/dist/index.css";
 import { Web3Button } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import Image from "next/image";
+import Active from "../components/Active";
 
 const images = [
   {
@@ -24,7 +27,7 @@ const images = [
     url: "https://i.seadn.io/gae/a2KKmW0hZKrWcX7HvQOgjqjeORjfi8D5hag9hG94TCAzNMarYsDVTTe3Cc_jGU-qZPtTEd8EdJgC2tBG-yduN6Up_SmtCjWQOXfr28I?auto=format&w=1920",
   },
   {
-    url: "https://i.seadn.io/gae/AvXGxCT9Lw0lZGFwOWg6h82H44He2uguoLR-W23mv6SqVIMwc0in51Y_sIc0cRSeK7Wb11Jo136D5CBkiks1vq7RKlehUPBiv20S?auto=format&w=1920",
+    url: "https://i.seadn.io/gae/AvXGxCT9Lw0lZGFwOWg6h82h24He2uguoLR-W23mv6SqVIMwc0in51Y_sIc0cRSeK7Wb11Jo136D5CBkiks1vq7RKlehUPBiv20S?auto=format&w=1920",
   },
   {
     url: "https://i.seadn.io/gcs/files/9145783d45134768fd2236d4389d631e.png?auto=format&w=1920",
@@ -36,17 +39,41 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.banner}>
-        <div className={styles.bannerImage}>
-          <img src="./android-chrome-512x512.png" />
-        </div>
-        <div className={styles.bannerText}>
-          <h1>Aura NFT Exchange</h1>
-          <h3>
-            The only NFT marketplace to offer Quick Scan, a quick audit service
-            for members to easily scan a NFT contract. Because a marketplace,
-            should promote safety and transparency of web3.{" "}
-          </h3>
+      <div className={styles.utilityContainer}>
+        <h1>Utility</h1>
+        <div className={styles.featuredUtility}>
+          <div
+            className={styles.optionSelectUtilityBox}
+            role="button"
+            onClick={() => router.push(`/mint`)}
+          >
+            <Link href="/zombeze" passHref>
+              <Image 
+                src={`/images/thecrypt.png`} 
+                className={styles.image} 
+                width={600}
+                height={350}
+              />
+            </Link>
+            <h2>$ZOE Staking</h2>
+          </div>
+          <div className={styles.optionSelectUtilityBox}>
+          <Link href="https://kat-nip-staking.vercel.app/" passHref>
+              <Image 
+                src={`/images/katnip.png`} 
+                className={styles.image} 
+                width={600}
+                height={350}
+              />
+            </Link>
+            <h2>KatNip Staking</h2>
+          </div>
+          <div className={styles.optionSelectUtilityBox}>
+            <Link href="/" passHref>
+              <img src={`/images/rugrescues.png`} className={styles.image} />
+            </Link>
+            <h2>Rug Rescuse🛟</h2>
+          </div>
         </div>
       </div>
       <div className={styles.featuredDropsContainer}>
@@ -60,25 +87,25 @@ const Home: NextPage = () => {
             <Link href="https://kronickatz.netlify.app/" passHref>
               <img src={`/images/kronicbanner.png`} className={styles.image} />
             </Link>
-            <h1>Now Minting!</h1>
+            <h2>Now Minting 0.01 ETH</h2>
           </div>
           <div className={styles.optionSelectBox}>
             <Link href="https://www.mint.zombezeofficial.xyz/" passHref>
               <img src={`/images/zombeze.png`} className={styles.image} />
             </Link>
-            <h1>Now Minting!</h1>
+            <h2>Now Minting 0.0666 ETH</h2>
           </div>
           <div className={styles.optionSelectBox}>
-            <Link href="/mint" passHref>
+            <Link href="https://mint.boredapepixelclub.net/" passHref>
               <img src={`/images/BAPC.png`} className={styles.image} />
             </Link>
-            <h1>Minting Soon!</h1>
+            <h2>Now Minting 0.05 ETH</h2>
           </div>
         </div>
       </div>
       <p></p>
       <div className={styles.Education}>
-        <h1>Verified Partners</h1>
+        <h2>Verified Partners</h2>
         <div className={styles.verifiedPartners}>
           <div
             className={styles.verifiedOptionSelectBox}
@@ -88,32 +115,26 @@ const Home: NextPage = () => {
             <Link href="https://first-class-eta.vercel.app/" passHref>
               <img src={`/images/firstclass.png`} className={styles.image} />
             </Link>
-            <h4>
-              A platform for content creators to safely maintain and tokengate
-              their communities.
-            </h4>
+            <h2>First Class</h2>
           </div>
           <div className={styles.verifiedOptionSelectBox}>
             <Link href="https://thirdweb.com/" passHref>
               <img src={`/images/thirdweb.png`} className={styles.image} />
             </Link>
-            <h4>
-              Everything you need to connect your apps or games to decentralized
-              networks. Powerful tools that simplify web3 development.
-            </h4>
+            <h2>thirdweb</h2>
           </div>
         </div>
       </div>
       <div className={styles.notableCollections}>
         <div className={styles.container}>
-          <h1 className={styles.h1}>Featured Collections</h1>
-          <Slider
+          <h2 className={styles.h2}>Featured Collections</h2>
+          {/*<Slider
             showArrowControls={false}
             showDotControls={true}
             imageList={images}
-            width={1400}
-            height={300}
-          />
+            width={600}
+            height={100}
+  />*/}
         </div>
       </div>
     </div>
