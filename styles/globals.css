@@ -18,6 +18,7 @@
 body {
   background: var(--background-color);
   background-image: var(--background-image);
+  background-attachment: fixed;
   font-family: var(--font-family);
   color: var(--text-color);
 
@@ -47,4 +48,11 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 800px;
+  margin: 3%;
 }

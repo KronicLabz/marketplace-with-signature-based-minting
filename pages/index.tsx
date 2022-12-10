@@ -39,45 +39,9 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.utilityContainer}>
-        <h1>Utility</h1>
-        <div className={styles.featuredUtility}>
-          <div
-            className={styles.optionSelectUtilityBox}
-            role="button"
-            onClick={() => router.push(`/mint`)}
-          >
-            <Link href="/zombeze" passHref>
-              <Image 
-                src={`/images/thecrypt.png`} 
-                className={styles.image} 
-                width={600}
-                height={350}
-              />
-            </Link>
-            <h2>$ZOE Staking</h2>
-          </div>
-          <div className={styles.optionSelectUtilityBox}>
-          <Link href="https://kat-nip-staking.vercel.app/" passHref>
-              <Image 
-                src={`/images/katnip.png`} 
-                className={styles.image} 
-                width={600}
-                height={350}
-              />
-            </Link>
-            <h2>KatNip Staking</h2>
-          </div>
-          <div className={styles.optionSelectUtilityBox}>
-            <Link href="/" passHref>
-              <img src={`/images/rugrescues.png`} className={styles.image} />
-            </Link>
-            <h2>Rug Rescuse🛟</h2>
-          </div>
-        </div>
-      </div>
       <div className={styles.featuredDropsContainer}>
-        <h1>Featured Drops</h1>
+        <div className={styles.pageTitle}>Featured Drops</div>
+        <p></p>
         <div className={styles.featuredDrops}>
           <div
             className={styles.optionSelectBox}
@@ -85,27 +49,95 @@ const Home: NextPage = () => {
             onClick={() => router.push(`/mint`)}
           >
             <Link href="https://kronickatz.netlify.app/" passHref>
-              <img src={`/images/kronicbanner.png`} className={styles.image} />
+              <Image 
+                src={`/images/kronicbanner.png`} 
+                className={styles.featuredImage} 
+                width={1250}
+                height={750}
+              />
             </Link>
             <h2>Now Minting 0.01 ETH</h2>
           </div>
-          <div className={styles.optionSelectBox}>
+          <div
+            className={styles.optionSelectBox}
+            role="button"
+            onClick={() => router.push(`/mint`)}
+          >
             <Link href="https://www.mint.zombezeofficial.xyz/" passHref>
-              <img src={`/images/zombeze.png`} className={styles.image} />
+              <Image 
+                src={`/images/zombeze.png`} 
+                className={styles.featuredImage} 
+                width={1250}
+                height={750}  
+              />
             </Link>
             <h2>Now Minting 0.0666 ETH</h2>
           </div>
-          <div className={styles.optionSelectBox}>
+          <div
+            className={styles.optionSelectBox}
+            role="button"
+            onClick={() => router.push(`/mint`)}
+          >
             <Link href="https://mint.boredapepixelclub.net/" passHref>
-              <img src={`/images/BAPC.png`} className={styles.image} />
+              <Image 
+                src={`/images/BAPC.png`} 
+                className={styles.featuredImage} 
+                width={1250}
+                height={750}  
+              />
             </Link>
             <h2>Now Minting 0.05 ETH</h2>
           </div>
         </div>
       </div>
       <p></p>
+      <div className={styles.utilityContainer}>
+        <div className={styles.pageTitle}>Aura Subscription Perks</div>
+        <p></p>
+        <div className={styles.featuredUtility}>
+          <div
+            className={styles.optionSelectUtilityBox}
+            role="button"
+            onClick={() => router.push(`/mint`)}
+          >
+            <Link href="/zombeze" passHref>
+              <Image
+                src={`/icons/staking.png`}
+                className={styles.image}
+                width={750}
+                height={650}
+              />
+            </Link>
+            <h2>NFT & Defi Staking</h2>
+          </div>
+          <div className={styles.optionSelectUtilityBox}>
+            <Link href="https://kat-nip-staking.vercel.app/" passHref>
+              <Image
+                src={`/icons/verified.png`}
+                className={styles.image}
+                width={750}
+                height={650}
+              />
+            </Link>
+            <h2>Verified Safe Mint Links</h2>
+          </div>
+          <div className={styles.optionSelectUtilityBox}>
+            <Link href="https://kat-nip-staking.vercel.app/" passHref>
+              <Image
+                src={`/icons/audits.png`}
+                className={styles.image}
+                width={750}
+                height={650}
+              />
+            </Link>
+            <h2>Quick Audit Tool</h2>
+          </div>
+        </div>
+      </div>
+      <p></p>
       <div className={styles.Education}>
-        <h2>Verified Partners</h2>
+        <div className={styles.pageTitle}>Verified Partners</div>
+        <p></p>
         <div className={styles.verifiedPartners}>
           <div
             className={styles.verifiedOptionSelectBox}
