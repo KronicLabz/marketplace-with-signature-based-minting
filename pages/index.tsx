@@ -7,7 +7,6 @@ import "@madzadev/image-slider/dist/index.css";
 import { Web3Button } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import Image from "next/image";
 import Active from "../components/Active";
 
 const images = [
@@ -49,9 +48,9 @@ const Home: NextPage = () => {
             onClick={() => router.push(`/mint`)}
           >
             <Link href="https://kronickatz.netlify.app/" passHref>
-              <Image 
-                src={`/images/kronicbanner.png`} 
-                className={styles.featuredImage} 
+              <img
+                src={`/images/kronicbanner.png`}
+                className={styles.featuredImage}
                 width={1250}
                 height={750}
               />
@@ -64,11 +63,11 @@ const Home: NextPage = () => {
             onClick={() => router.push(`/mint`)}
           >
             <Link href="https://www.mint.zombezeofficial.xyz/" passHref>
-              <Image 
-                src={`/images/zombeze.png`} 
-                className={styles.featuredImage} 
+              <img
+                src={`/images/zombeze.png`}
+                className={styles.featuredImage}
                 width={1250}
-                height={750}  
+                height={750}
               />
             </Link>
             <h2>Now Minting 0.0666 ETH</h2>
@@ -79,11 +78,11 @@ const Home: NextPage = () => {
             onClick={() => router.push(`/mint`)}
           >
             <Link href="https://mint.boredapepixelclub.net/" passHref>
-              <Image 
-                src={`/images/BAPC.png`} 
-                className={styles.featuredImage} 
+              <img
+                src={`/images/BAPC.png`}
+                className={styles.featuredImage}
                 width={1250}
-                height={750}  
+                height={750}
               />
             </Link>
             <h2>Now Minting 0.05 ETH</h2>
@@ -101,34 +100,19 @@ const Home: NextPage = () => {
             onClick={() => router.push(`/mint`)}
           >
             <Link href="/zombeze" passHref>
-              <Image
-                src={`/icons/staking.png`}
-                className={styles.image}
-                width={750}
-                height={650}
-              />
+              <img src={`/icons/staking.png`} className={styles.image} />
             </Link>
             <h2>NFT & Defi Staking</h2>
           </div>
           <div className={styles.optionSelectUtilityBox}>
             <Link href="https://kat-nip-staking.vercel.app/" passHref>
-              <Image
-                src={`/icons/verified.png`}
-                className={styles.image}
-                width={750}
-                height={650}
-              />
+              <img src={`/icons/verified.png`} className={styles.image} />
             </Link>
             <h2>Verified Safe Mint Links</h2>
           </div>
           <div className={styles.optionSelectUtilityBox}>
             <Link href="https://kat-nip-staking.vercel.app/" passHref>
-              <Image
-                src={`/icons/audits.png`}
-                className={styles.image}
-                width={750}
-                height={650}
-              />
+              <img src={`/icons/audits.png`} className={styles.image} />
             </Link>
             <h2>Quick Audit Tool</h2>
           </div>
