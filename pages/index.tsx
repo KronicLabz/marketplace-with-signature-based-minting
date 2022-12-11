@@ -46,7 +46,7 @@ const Home: NextPage = () => {
           >
             <Link href="https://kronickatz.netlify.app/" passHref>
               <img
-                src={`/images/kronicbanner.png`}
+                src={`/images/kronic.png`}
                 className={styles.featuredImage}
                 width={1250}
                 height={750}
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
           >
             <Link href="https://web-against-humanity.vercel.app/" passHref>
               <img
-                src={`/images/zombeze.png`}
+                src={`/images/web3.png`}
                 className={styles.featuredImage}
                 width={1250}
                 height={750}
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
             <h2>NFT & Defi Staking</h2>
           </div>
           <div className={styles.optionSelectUtilityBox}>
-            <Link href="https://kat-nip-staking.vercel.app/" passHref>
+            <Link href="/mintlink" passHref>
               <img src={`/icons/verified.png`} className={styles.image} />
             </Link>
             <h2>Verified Safe Mint Links</h2>
