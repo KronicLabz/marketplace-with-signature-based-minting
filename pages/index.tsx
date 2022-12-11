@@ -76,7 +76,7 @@ const Home: NextPage = () => {
           >
             <Link href="https://mint.boredapepixelclub.net/" passHref>
               <img
-                src={`/images/BAPC.png`}
+                src={`/images/bapc.png`}
                 className={styles.featuredImage}
                 width={1250}
                 height={750}
