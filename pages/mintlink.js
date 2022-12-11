@@ -12,7 +12,7 @@ const Links = () => {
     return (
         <div className={styles.container}>
             <div className={styles.featuredDropsContainer}>
-                <div className={styles.pageTitle}>Verified Minting Links</div>
+                <div className={styles.pageTitle}>Verified New Mints</div>
                 <p></p>
                 <div className={styles.featuredDrops}>
                     <div
@@ -60,6 +60,10 @@ const Links = () => {
                         </Link>
                         <h2>Now Minting 0.05 ETH</h2>
                     </div>
+                </div>
+                <div className={styles.pageTitle}>Verified FREE Mints</div>
+                <p></p>
+                <div className={styles.featuredDrops}>
                     <div
                         className={styles.optionSelectBox}
                         role="button"
