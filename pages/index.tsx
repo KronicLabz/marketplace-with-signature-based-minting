@@ -2,12 +2,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Theme.module.css";
-import Slider from "@madzadev/image-slider";
 import "@madzadev/image-slider/dist/index.css";
-import { Web3Button } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
-import { NextPage } from "next";
-import Active from "../components/Active";
+import { NextPage } from "next"
 
 const images = [
   {
@@ -86,6 +83,21 @@ const Home: NextPage = () => {
               />
             </Link>
             <h2>Now Minting 0.05 ETH</h2>
+          </div>
+          <div
+            className={styles.optionSelectBox}
+            role="button"
+            onClick={() => router.push(`/mint`)}
+          >
+            <Link href="https://web-against-humanity.vercel.app/" passHref>
+              <img
+                src={`/images/zombeze.png`}
+                className={styles.featuredImage}
+                width={1250}
+                height={750}
+              />
+            </Link>
+            <h2>FREE Mint</h2>
           </div>
         </div>
       </div>
