@@ -6,15 +6,16 @@ import {
   ThirdwebNftMedia,
 } from "@thirdweb-dev/react";
 import { MARKETPLACE_AUCTION_ADDRESS, MARKETPLACE_DIRECT_LISTING_ADDRESS } from "../const/contractAddresses";
-import styles from "../styles/Theme.module.css";
+import styles from "../styles/Staking.module.css";
 
 export default function Listings() {
   const { contract: marketplace } = useContract(MARKETPLACE_DIRECT_LISTING_ADDRESS);
-  const { data: listings, isLoading } = useActiveListings(marketplace);
+  const { contract: marketplace2 } = useContract(MARKETPLACE_AUCTION_ADDRESS);
+  const { data: listings, isLoading } = useActiveListings(marketplace, marketplace2);
 
   // Load contract metadata
   const { data: contractMetadata, isLoading: loadingMetadata } =
-    useContractMetadata(marketplace);
+    useContractMetadata(marketplace, marketplace2);
 
   const [filter, setFilter] = useState(0); // 0 = direct, auction = 1
 

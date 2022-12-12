@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Theme.module.css";
-import "@madzadev/image-slider/dist/index.css";
 import { useRouter } from "next/router";
-import { NextPage } from "next"
+import { NextPage } from "next";
+import Slider from "@madzadev/image-slider";
+import "@madzadev/image-slider/dist/index.css";
+import Explore from './explore';
 
 const images = [
   {
@@ -23,9 +25,6 @@ const images = [
     url: "https://i.seadn.io/gae/a2KKmW0hZKrWcX7HvQOgjqjeORjfi8D5hag9hG94TCAzNMarYsDVTTe3Cc_jGU-qZPtTEd8EdJgC2tBG-yduN6Up_SmtCjWQOXfr28I?auto=format&w=1920",
   },
   {
-    url: "https://i.seadn.io/gae/AvXGxCT9Lw0lZGFwOWg6h82h24He2uguoLR-W23mv6SqVIMwc0in51Y_sIc0cRSeK7Wb11Jo136D5CBkiks1vq7RKlehUPBiv20S?auto=format&w=1920",
-  },
-  {
     url: "https://i.seadn.io/gcs/files/9145783d45134768fd2236d4389d631e.png?auto=format&w=1920",
   },
 ];
@@ -35,7 +34,18 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.homePageHeader}>
+        <img
+          src={`/lunar.png`}
+          width={600}
+        />
+      </div>
       <div className={styles.featuredDropsContainer}>
+        <div className={styles.banner}>
+          <div className={styles.pageTitle}>Featured Collections</div>
+          <p></p>
+          <Slider imageList={images} width={1400} height={300} />
+        </div>
         <div className={styles.pageTitle}>Featured Drops</div>
         <p></p>
         <div className={styles.featuredDrops}>
@@ -111,7 +121,7 @@ const Home: NextPage = () => {
             role="button"
             onClick={() => router.push(`/mint`)}
           >
-            <Link href="/zombeze" passHref>
+            <Link href="/staking" passHref>
               <img src={`/icons/staking.png`} className={styles.image} />
             </Link>
             <h2>NFT & Defi Staking</h2>
@@ -123,7 +133,7 @@ const Home: NextPage = () => {
             <h2>Verified Safe Mint Links</h2>
           </div>
           <div className={styles.optionSelectUtilityBox}>
-            <Link href="https://kat-nip-staking.vercel.app/" passHref>
+            <Link href="/audits" passHref>
               <img src={`/icons/audits.png`} className={styles.image} />
             </Link>
             <h2>Quick Audit Tool</h2>

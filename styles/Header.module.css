@@ -1,11 +1,15 @@
 .container {
-    margin-top: 96px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-  }
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  padding: 0 24px;
+  font-family: 'Noto Sans', sans-serif;
+  color: white;
+}
   
   .collectionContainer {
     width: 500px;

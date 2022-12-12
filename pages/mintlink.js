@@ -52,7 +52,7 @@ const Links = () => {
                     >
                         <Link href="https://mint.boredapepixelclub.net/" passHref>
                             <img
-                                src={`/images/bapc.png`}
+                                src={`/images/BAPC.png`}
                                 className={styles.featuredImage}
                                 width={1250}
                                 height={750}

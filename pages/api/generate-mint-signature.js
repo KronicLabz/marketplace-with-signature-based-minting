@@ -1,5 +1,4 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 export default async function generateMintSignature(req, res) {
   // De-construct body from request
