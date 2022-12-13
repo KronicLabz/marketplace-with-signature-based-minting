@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/Active.jsx"  ],
+, "components/Active.jsx", "pages/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]
