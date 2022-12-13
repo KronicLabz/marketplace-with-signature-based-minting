@@ -25,9 +25,6 @@ export default function Header() {
         <Link href="/sell">
           <a className={styles.headerItem}>List</a>
         </Link>
-        <Link href="/explore">
-          <a className={styles.headerItem}>Explore</a>
-        </Link>
         <Link href="/staking">
           <a className={styles.headerItem}>Earn</a>
         </Link>

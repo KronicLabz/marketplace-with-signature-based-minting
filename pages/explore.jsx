@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import NftCard from '../components/nftcard';
-import { fetchNFTs } from '../utils/fetchNFTs';
-import '../styles/Explore.module.css';
+import NftCard from './nftcard';
+import { fetchNFTs } from './fetchNFTs';
+
 
 const Explore = () => {
 
@@ -26,13 +26,13 @@ const Explore = () => {
                         <input className="border rounded-sm focus:outline-none py-2 px-3 w-full" value={owner} onChange={(e) => setOwner(e.target.value)} placeholder='Insert your wallet address'></input>
                         <input className="focus:outline-none rounded-sm py-2 px-3 w-full" value={contractAddress} onChange={(e) => setContractAddress(e.target.value)} placeholder='Insert NFT Contract address (optional)'></input>
                     </div>
-                    <div className='w-2/6 flex justify-center'>
+                    <div className=''>
                         <button className='py-3 bg-white rounded-sm w-full hover:bg-slate-100' onClick={() => { fetchNFTs(owner, contractAddress, setNFTs) }}>Search</button>
                     </div>
                 </div>
             </header>
 
-            <section className='flex flex-wrap justify-center'>
+            <section className=''>
                 {
                     NFTs ? NFTs.map(NFT => {
 

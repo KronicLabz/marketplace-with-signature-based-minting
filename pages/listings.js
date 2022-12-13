@@ -5,13 +5,12 @@ import {
   useContractMetadata,
   ThirdwebNftMedia,
 } from "@thirdweb-dev/react";
-import { MARKETPLACE_AUCTION_ADDRESS, MARKETPLACE_DIRECT_LISTING_ADDRESS } from "../const/contractAddresses";
+import { MARKETPLACE_AUCTION_ADDRESS } from "../const/contractAddresses";
 import styles from "../styles/Staking.module.css";
 
 export default function Listings() {
-  const { contract: marketplace } = useContract(MARKETPLACE_DIRECT_LISTING_ADDRESS);
   const { contract: marketplace2 } = useContract(MARKETPLACE_AUCTION_ADDRESS);
-  const { data: listings, isLoading } = useActiveListings(marketplace, marketplace2);
+  const { data: listings, isLoading } = useActiveListings(marketplace);
 
   // Load contract metadata
   const { data: contractMetadata, isLoading: loadingMetadata } =

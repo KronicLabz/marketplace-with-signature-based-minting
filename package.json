@@ -19,6 +19,8 @@
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
     "@thirdweb-dev/storage": "^1.0.6",
+    "@tippyjs/react": "^4.2.6",
+    "alchemy-sdk": "^2.2.4",
     "ethers": "^5.6.8",
     "framer-motion": "^7.6.19",
     "next": "^12.1.6",
@@ -27,6 +29,7 @@
     "react": "^18.1.0",
     "react-awesome-slider": "^4.1.0",
     "react-dom": "^18.1.0",
+    "react-icons": "^4.7.1",
     "react-responsive-carousel": "^3.2.23",
     "swiper": "^8.4.5"
   },

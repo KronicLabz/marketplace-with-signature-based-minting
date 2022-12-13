@@ -1,12 +1,10 @@
 .container {
-  margin-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   position: absolute;
-  padding: 0 24px;
   font-family: 'Noto Sans', sans-serif;
   color: white;
 }
@@ -23,9 +21,24 @@
 */
 
 .homePageHeader {
-  display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.homePageLeft {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  align-items: center;
+  justify-content: baseline;
+}
+
+.homePageRight {
+  display: flex;
+  flex-direction: row;
+  width: 45%;
   align-items: center;
   justify-content: baseline;
 }
@@ -58,17 +71,59 @@
   justify-content: center;
   margin-top: 5%;
   margin-bottom: 10%;
-  font-size:20px;
+  font-size: 20px;
+}
+
+.carouselSwiper {
+  width: 40%;
+  display: flex;
+  flex-direction: ro;
 }
 
 .pageTitle {
   display: flex;
   font-size: 50px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 2%;
+  margin-bottom: 4%;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 4px;
+  width: 33.333333%;
+  row-gap: 2rem;
+}
+
+.searchInput {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid grey;
+  border-radius: 8px;
+  color: #fff;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 1rem;
+  margin-top: 16px;
+}
+
+.searchButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 33.333333%;
+}
+
+.searchButton {
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: small;
+  width: 100%;
+  background-color: #262936;
 }
 
 .notableCollections {
@@ -312,7 +367,7 @@
   left: 0;
   width: 100vw;
   height: 72px;
-  margin-bottom: 96px;
+  margin-bottom: 6px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -551,6 +606,14 @@
   opacity: 0;
   width: 0;
   position: fixed;
+}
+
+.divider {
+  width: 80%;
+  size: 4px;
+  border-color: rgb(255, 253, 253);
+  opacity: 0.25;
+  margin: 8%;
 }
 
 .listingTypeLabel {
